@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/LICENSE
+END
+WdatePicker.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/WdatePicker.js
+END
+config.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/config.js
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/.gitignore
+END
+demo.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/demo.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/index.html
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/README.md
+END
+ng-WdatePicker.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/ng-WdatePicker.js
+END
+calendar.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/calendar.js
+END
+My97DatePicker.htm
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/project/!svn/ver/2410/tms/trunk01/tms/src/main/webapp/ui/js/date/My97DatePicker.htm
+END

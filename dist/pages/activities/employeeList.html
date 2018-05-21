@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>远孚hr系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    
+
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-table-fixed-columns.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/pages.css" />
+    <link rel="stylesheet" href="/static/uscss/public.css" />
+    <style>
+        .table .btn-default {
+            margin: 0 4px;
+			border: none;
+			color: #0078e5;
+		}
+		.table .btn-default.gray {
+			color: #ccc;
+		}
+		.modal-body .input-group {
+			margin-top: 20px;
+			padding: 0 10px;
+		}
+		.modal-body h2 {
+			color: #0078e5;
+			font-size: 16px;
+			position: relative;
+			padding-left: 12px;
+			font-weight: normal;
+			line-height: 18px;
+			margin-top: 20px;
+		}
+    </style>
+</head>
+<body>
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+		<div class="panel-heading boxpm">
+			<form class="form-inline" id="formHeader">
+				<div class="input-group col-lg-2 pull-left">
+				<span class="input-group-addon">公司名称</span>
+				<input type="text" class="form-control" placeholder="公司名称" aria-describedby="basic-addon1" name="companyName">
+				</div>
+				<div class="input-group col-lg-2 pull-left">
+				<span class="input-group-addon">员工编号</span>
+				<input type="text" class="form-control" placeholder="员工编号" aria-describedby="basic-addon1" name="employeeNo">
+				</div>
+				<div class="input-group col-lg-2 pull-left">
+					<span class="input-group-addon" >员工状态</span>
+					<select class="form-control" name="status">
+						<option value="">全部</option>
+						<option value="online">在职</option>
+						<option value="offline">离职</option>
+					</select>
+				</div>
+				<div class="input-group col-lg-2 pull-left">
+					<span class="input-group-addon" id="basic-addon1">在职状态</span>
+					<select class="form-control" name="onLineStatus">
+						<option value="">全部</option>
+						<option value="try">试用期</option>
+						<option value="turn">已转正</option>
+					</select>
+				</div>
+				<div class="input-group col-lg-2 pull-right">
+					<button class="btn btn-sm btn-primary" type="button" id="search">查询</button>
+					<button class="btn btn-sm btn-danger" type="reset" id="reset">重置</button>
+				</div>
+				<div class="clearfix"></div>
+			</form>
+		</div>
+		<div class="panel-body">
+			<!-- Table -->
+			<div style="height: 100%;overflow-y: auto">
+                <div class="btns" style="margin-bottom: 10px;">
+                    <button type="button" class="btn btn-primary" style="margin-right: 20px;" id="entryBtn">员工入职</button>
+                    <button type="button" class="btn btn-primary" style="margin-right: 20px;" data-toggle="modal" id="employeeChangeBtn">员工异动</button>
+                    <button type="button" class="btn btn-primary" id="export">导 出</button>
+                </div>
+                <div class="table-responsive" style="overflow-y: hidden">
+				    <table class="table table-hover" id="table" data-height="560"></table>
+                </div>
+			</div>
+		</div>
+	</div>
+	<!-- 员工异动弹框 -->
+	<div class="modal fade" id="employeeChange" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">员工异动</h4>
+				</div>
+				<div class="modal-body">
+					<div class="top">
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">员工编号</label>
+							<input type="text" class="form-control" placeholder="员工编号" name="employeeNo" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">员工姓名</label>
+							<input type="text" class="form-control" placeholder="员工姓名" name="name" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">公司名称</label>
+							<input type="text" class="form-control" placeholder="公司名称" name="companyName" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">所属部门</label>
+							<input type="text" class="form-control" placeholder="所属部门" name="departName" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">直属领导</label>
+							<input type="text" class="form-control" placeholder="直属领导" name="directLeader" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">职位级别</label>
+							<input type="text" class="form-control" placeholder="职位级别" name="stationLevel" readonly>
+						</div>
+						<div class="input-group col-lg-4 pull-left">
+							<label class="input-group-addon">岗位名称</label>
+							<input type="text" class="form-control" placeholder="岗位名称" name="stationName" readonly>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<hr>
+					<div class="bottom">
+						<h2>职位变更</h2>
+						<form class="form-horizontal" id="form-change">
+							<input type="hidden" name="employeeId">
+							<div class="input-group col-lg-4 pull-left">
+								<label class="input-group-addon"><span class="red">*</span>公司名称</label>
+								<select class="form-control" name="newCompanyName" id="newCompanyName">
+								</select>
+							</div>
+							<div class="input-group col-lg-4 pull-left">
+								<label class="input-group-addon"><span class="red">*</span>所属部门</label>
+								<select class="form-control" name="newDepartName" id="newDepartName">
+								</select>
+							</div>
+							<div class="input-group col-lg-4 pull-left">
+								<label class="input-group-addon">直接领导</label>
+								<input type="text" class="form-control" name="newDirectLeader">
+							</div>
+							<div class="input-group col-lg-4 pull-left">
+								<label class="input-group-addon">职位级别</label>
+								<select class="form-control" name="newStationLevel" id="newStationLevel">
+								</select>
+							</div>
+							<div class="input-group col-lg-4 pull-left">
+								<label class="input-group-addon">岗位名称</label>
+								<select class="form-control" name="newStationName" id="newStationName">
+								</select>
+							</div>
+							<div class="clearfix"></div>
+							<div class="input-group col-lg-12 pull-left">
+								<label class="input-group-addon">员工转岗原因</label>
+								<input type="text" class="form-control" placeholder="员工转岗原因" name="reason" maxlength="500">
+							</div>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default cancel" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="changeBtn">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 转正弹框 -->
+    <div class="modal fade" id="regular" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">员工转正</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" id="formRegular">
+						<input type="hidden" name="employeeId">
+						<div class="form-group">
+							<label for="addName" class="col-sm-4 control-label">员工编号</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="员工编号" name="employeeNo" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addType" class="col-sm-4 control-label">员工姓名</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="员工姓名" readonly name="name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label">预计转正日期</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="预计转正日期" readonly name="expectRegularTime">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label"><span class="red">*</span>实际转正日期</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control Wdate" placeholder="实际转正日期" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" id="entryTime" name="actualRegularTime">
+							</div>
+                            <span class="errorTips">组织名称不能为空</span>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default cancel" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="regularBtn">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 离职弹框 -->
+    <div class="modal fade" id="employeeQuit" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">员工离职</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" id="formLeave">
+						<input type="hidden" name="employeeId">
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label">员工编号</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="员工编号" name="employeeNo" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label">员工姓名</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="员工姓名" name="name" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label"><span class="red">*</span>离职类型</label>
+							<div class="col-sm-6">
+								<select class="form-control" name="leaveType">
+									<option value="xsjcht">协商接触合同</option>
+									<option value="qydfjc">企业单方解除</option>
+									<option value="ygdfjc">员工单方解除</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addPcode" class="col-sm-4 control-label">离职原因</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="离职原因" name="leaveReason">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default cancel" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="quitBtn">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="/static/lib/jquery.js"></script>
+<script type="text/javascript" src="/static/js/mod.js"></script>
+<script src="/static/lib/bootstrap.min.js"></script>
+<script src="/static/lib/bootstrap-table.min.js"></script>
+<script src="/static/lib/bootstrap-table-zh-CN.js"></script>
+<script src="/static/lib/colResizable-1.6.js"></script>
+<script src="/static/lib/date/WdatePicker.js"></script>
+<script src="/static/js/zq.js"></script>
+<script src="/static/js/commonUtil.js"></script>
+<script src="/static/js/contantsUtil.js"></script>
+<script src="/static/lib/bootstrapValidator.min.js"></script>
+<script src="/static/js/employeeList.js"></script>
+</body>
+<!-- <script src="static/lib/bootstrap-table.js"></script> -->
+<!-- <script src="../../static/lib/bootstrap-table-fixed-columns.js"></script> -->
+<!-- <script src="../../static/lib/bootstrap-table.js"></script> -->
+</html>

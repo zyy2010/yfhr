@@ -1,0 +1,96 @@
+.box > h2 {
+    color: #0078e5;
+    font-size: 16px;
+    position: relative;
+    padding-left: 12px;
+    font-weight: normal;
+    line-height: 18px;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+.box:first-of-type > h2 {
+    margin-top: 0;
+}
+.box > h2::before {
+    display: block;
+    content: '';
+    width: 4px;
+    height: 16px;
+    background: #0078e5;
+    position: absolute;
+    left: 0;
+}
+.panel-body .pull-left {
+    padding-right: 8px;
+    margin: 10px 0;
+}
+#moreBtn {
+    margin-top: 20px;
+}
+#moreBtn a {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    color: #0078e5;
+    position: relative;
+}
+#moreBtn img {
+    position: absolute;
+    width: 12px;
+    top: 11px;
+    right: 0;
+}
+#moreInfo {
+    margin-top: 10px;
+}
+.active {
+    display: none;
+}
+
+#picBox {
+    width: 130px;
+    height: 184px;
+    background: #ccc;
+    display: inline-block;
+    position: relative;
+}
+#fileImg {
+    width: 130px;
+    height: 184px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    outline: none;
+    opacity: 0;
+    filter: Alpha(opacity=100);
+    cursor: pointer;
+}
+#picBox img {
+    width: 100%;
+    height: 100%;
+}
+#picBox .closePic {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    right: -5px;
+    top: -5px;
+    opacity: 1;
+    cursor: pointer;
+}
+#btns {
+    text-align: center;
+    margin: 20px 0;
+}
+#btns button {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#baseInfo {
+    padding: 0;
+    margin: 0;
+}
+

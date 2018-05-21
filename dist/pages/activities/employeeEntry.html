@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit"> 
+    <title>远孚HR系统</title>
+    
+
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="/static/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="/static/css/city-picker.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/pages.css" />
+    <link rel="stylesheet" href="/static/uscss/public.css" />
+    <link rel="stylesheet" href="/static/uscss/employeeEntry.css" />
+    <style>
+        #employeeNo {
+            color: #555;
+            font-size: 14px;
+            margin-left: 10px;
+            display: none;
+        }
+        .has-error .form-control {
+            border-color: #a94442 !important;
+        }
+        .has-feedback .form-control {
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline" id="form1" enctype="multipart/form-data"  onsubmit="return false">
+                <div class="box">
+                    <h2>基础信息<span id="employeeNo">员工编号：123456</span></h2>
+                    <input type="hidden" name="employeeId" id="employeeId">
+                    <div class="col-lg-10 pull-left" id="baseInfo">
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon"><span class="red">*</span>姓名</label>
+                            <input type="text" class="form-control" placeholder="姓名" name="name">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon"><span class="red">*</span>手机号</label>
+                            <input type="text" class="form-control" placeholder="手机号" name="phone" maxlength="11">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon"><span class="red">*</span>入职日期</label>
+                            <input type="text" class="form-control Wdate" placeholder="入职日期" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" id="entryTime" name="entryTime">
+                            <small class="help-block" data-bv-validator="notEmpty" data-bv-for="entryEntry" data-bv-result="NOT_VALIDATED" style="display: none;">入职日期不能为空</small>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">性别</label>
+                            <select class="form-control" name="sex">
+                                <option value="man">男</option>
+                                <option value="woman">女</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">身份证号</label>
+                            <input type="text" class="form-control" placeholder="身份证号" name="identityNo" maxlength="18">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">民族</label>
+                            <select class="form-control" name="nation">
+                                <option value="">请选择</option>
+                                <option value="han">汉</option>
+                                <option value="other">少数民族</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">学历</label>
+                            <select class="form-control" name="education">
+                                <option value="">请选择</option>
+                                <option value="postdoctor">博士后</option>
+                                <option value="doctor">博士</option>
+                                <option value="master">硕士</option>
+                                <option value="graduate">研究生</option>
+                                <option value="university">本科</option>
+                                <option value="junior">大专</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">婚姻状况</label>
+                            <select class="form-control" name="maritalStatus">
+                                <option value="">请选择</option>
+                                <option value="single">未婚</option>
+                                <option value="married">已婚</option>
+                                <option value="divorce">离异</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">身高(cm)</label>
+                            <input type="text" class="form-control" placeholder="身高" name="height" maxlength="11">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">体重(kg)</label>
+                            <input type="text" class="form-control" placeholder="体重" name="weight" maxlength="11">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">毕业院校</label>
+                            <input type="text" class="form-control" placeholder="毕业院校" name="university" maxlength="20">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">主修专业</label>
+                            <input type="text" class="form-control" placeholder="主修专业" name="major" maxlength="20">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">期望薪资(元)</label>
+                            <input type="text" class="form-control" placeholder="期望薪资" name="salary" maxlength="11">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">驾照类型</label>
+                            <select class="form-control" name="drivingLicense">
+                                <option value="">请选择</option>
+                                <option value="A1">A1</option>
+                                <option value="A2">A2</option>
+                                <option value="A3">A3</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="C3">C3</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">政治面貌</label>
+                            <select class="form-control" name="outlook">
+                                <option value="">请选择</option>
+                                <option value="young">少先队员</option>
+                                <option value="league">共青团员</option>
+                                <option value="party">中共党员</option>
+                                <option value="mass">群众</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">籍贯</label>
+                            <input type="text" class="form-control" placeholder="籍贯" name="placeOrigin" maxlength="10">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">户口类别</label>
+                            <select class="form-control" name="redidenceType">
+                                <option value="">请选择</option>
+                                <option value="city">城镇</option>
+                                <option value="country">农村</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">电子邮箱</label>
+                            <input type="text" class="form-control" placeholder="电子邮箱" name="email">
+                        </div>
+                        <div class="input-group col-lg-3 pull-left">
+                            <label class="input-group-addon">暂住地</label>
+                            <input type="text" class="form-control" placeholder="暂住地" name="tempLand" maxlength="40">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 pull-left">
+                        <div id="picBox">
+                            <img src="/static/img/file-bg.jpg" id="pic" alt="">
+                            <input type="file" id="fileImg" name="file">
+                            <span class="closePic">
+                                <img src="/static/img/remove.png" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="box">
+                    <h2>部门信息</h2>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon"><span class="red">*</span>公司名称</label>
+                        <select class="form-control" name="companyName" id="companyName">
+                        </select>
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon"><span class="red">*</span>所属部门</label>
+                        <select class="form-control" name="departName" id="departName">
+                        </select>
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">直接领导</label>
+                        <input type="text" class="form-control" placeholder="直接领导" name="directLeader" maxlength="20">
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">职位级别</label>
+                        <select class="form-control" name="stationLevel" id="stationLevel">
+                        </select>
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">岗位名称</label>
+                        <select class="form-control" name="stationName" id="stationName">
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+            <form class="form-inline" id="form2">
+                <div class="box">
+                    <h2>劳动合同</h2>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">合同编号</label>
+                        <input type="text" class="form-control" placeholder="合同编号" name="pactNo" maxlength="40">
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">合同期限(始)</label>
+                        <input type="text" class="form-control Wdate" placeholder="合同期限(始)" name="startTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">合同期限(止)</label>
+                        <input type="text" class="form-control Wdate" placeholder="合同期限(止)" name="endTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">预计转正日期</label>
+                        <input type="text" class="form-control Wdate" placeholder="预计转正日期" name="expectRegularTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                    </div>
+                    <div class="input-group col-lg-2 pull-left">
+                        <label class="input-group-addon">实际转正日期</label>
+                        <input type="text" class="form-control Wdate" placeholder="实际转正日期" name="actualRegularTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" id="actualRegularTime">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+            <div id="moreBtn">
+                <a href="javascript:;" id="more">
+                    更多信息
+                    <img src="/static/img/toggle.png" alt="">
+                </a>
+            </div>
+            <div id="moreInfo" class="active">
+                <!-- <form class="form-inline" id="form3"> -->
+                    <div class="box">
+                        <h2>
+                            家庭关系
+                            <button type="button" class="btn btn-primary btn-xs plus" style="margin: 0 10px 0 20px;">新 增</button>
+                            <button type="button" class="btn btn-primary btn-xs minus" disabled="disabled">删 除</button>
+                        </h2>
+                        <div class="employeeFamily">
+                            <form>
+                                <div class="input-group col-lg-2 pull-left">
+                                    <label class="input-group-addon">姓名</label>
+                                    <input type="text" class="form-control" placeholder="姓名" maxlength="40" name="name">
+                                </div>
+                                <div class="input-group col-lg-2 pull-left">
+                                    <label class="input-group-addon">关系</label>
+                                    <select class="form-control" name="relationship">
+                                        <option value="">请选择</option>
+                                        <option value="parent">父亲</option>
+                                        <option value="mother">母亲</option>
+                                        <option value="partner">配偶</option>
+                                        <option value="son">儿子</option>
+                                        <option value="daughter">女儿</option>
+                                        <option value="other">其他</option>
+                                    </select>
+                                </div>
+                                <div class="input-group col-lg-2 pull-left">
+                                    <label class="input-group-addon">工作单位</label>
+                                    <input type="text" class="form-control" placeholder="工作单位" maxlength="40" name="company">
+                                </div>
+                                <div class="input-group col-lg-2 pull-left">
+                                    <label class="input-group-addon">职务</label>
+                                    <input type="text" class="form-control" placeholder="职务" name="station" maxlength="40">
+                                </div>
+                                <div class="input-group col-lg-2 pull-left">
+                                    <label class="input-group-addon">联系方式</label>
+                                    <input type="text" class="form-control" placeholder="联系方式" name="linkWay" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="12">
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                <!-- </form> -->
+                <form class="form-inline" id="form4">
+                    <div class="box">
+                        <h2>紧急联系人</h2>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">姓名</label>
+                            <input type="text" class="form-control" placeholder="姓名" name="urgentMan" maxlength="40">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">关系</label>
+                            <select class="form-control" name="urgentRelationship">
+                                <option value="">请选择</option>
+                                <option value="friend">朋友</option>
+                                <option value="relatives">亲属</option>
+                                <option value="classmate">同学</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">联系方式</label>
+                            <input type="text" class="form-control" placeholder="联系方式" name="urgentWay"onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="12">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="box">
+                        <h2>其他信息</h2>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">招聘渠道</label>
+                            <select class="form-control" name="recruitChannel" id="recruitChannel">
+                                <option value="">请选择</option>
+                                <option value="qcwy">前程无忧</option>
+                                <option value="zlzp">智联招聘</option>
+                                <option value="58tc">58同城</option>
+                                <option value="bosszp">BOSS直聘</option>
+                                <option value="nbtj">内部推荐</option>
+                                <option value="lpw">猎聘网</option>
+                                <option value="xyzp">校园招聘</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-2 pull-left" style="display: none;" id="recommend">
+                            <label class="input-group-addon">推荐人员</label>
+                            <input type="text" class="form-control" maxlength="20" name="recommend">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">身份证有效期</label>
+                            <input type="text" class="form-control Wdate" placeholder="身份证有效期" name="identityInvidTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">兴趣爱好</label>
+                            <input type="text" class="form-control" placeholder="兴趣爱好" name="hobby" maxlength="100">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">工薪截止日</label>
+                            <input type="text" class="form-control Wdate" placeholder="工薪截止日" name="moneyEndTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">计工龄开始日期</label>
+                            <input type="text" class="form-control Wdate" placeholder="计工龄开始日期" name="workStartTime" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="input-group-addon">福利缴纳地</label>
+                            <input type="text" class="form-control" placeholder="福利缴纳地" name="boonAddress">
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="isBack" value="0" name="isBack">储备人才
+                            </label>
+                        </div>
+                        <div class="input-group col-lg-2 pull-left">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="isFresh" value="0" name="isFresh">应届毕业生
+                            </label>
+                        </div>
+                        <div class="input-group col-lg-12">
+                            <label class="input-group-addon">备注</label>
+                            <input type="text" class="form-control" placeholder="备注" name="remark" maxlength="500">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+    <div id="btns" style="margin-bottom: 10px;">
+        <button type="button" id="cancel" class="btn btn-default btn-lg" style="margin-right: 40px;">取消</button>
+        <button type="submit" id="save" class="btn btn-primary btn-lg">确定</button>
+    </div>
+
+<script type="text/javascript" src="/static/lib/jquery.js"></script>
+<script type="text/javascript" src="/static/js/mod.js"></script>
+<script src="/static/lib/bootstrap.min.js"></script>
+<script src="/static/lib/bootstrap-table.min.js"></script>
+<script src="/static/lib/bootstrap-table-zh-CN.js"></script>
+<script src="/static/lib/jquery.form.js"></script>
+<script src="/static/lib/date/WdatePicker.js"></script>
+<script src="/static/js/commonUtil.js"></script>
+<script src="/static/js/contantsUtil.js"></script>
+<script src="/static/lib/classie.js"></script>
+<script src="/static/js/zq.js"></script>
+<script src="/static/lib/bootstrapValidator.min.js"></script>
+<script src="/static/js/employeeEntry.js"></script>
+</body>
+</html>

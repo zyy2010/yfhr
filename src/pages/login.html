@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit"> 
+    <link rel="stylesheet" href="../static/uscss/public.css">
+    <link rel="stylesheet" href="../static/uscss/login.css">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="bookmark" href="/favicon.ico" type="image/x-icon"/>
+    <title>远孚HR系统</title>
+</head>
+<body>
+    <div class="login">
+        <header>
+            <a href="javascript:;">
+                <img src="../static/img/login/logo.png" alt="">
+            </a>
+        </header>
+        <div class="middle clearfix">
+            <div class="login_info">
+                <h3>HR人事管理系统</h3>
+                <form class="login_con">
+                    <section>
+                        <input type="text" placeholder="机构编号" id="syscode" maxlength="20">
+                    </section>
+                    <section>
+                        <input type="text" placeholder="用户名" id="account" maxlength="20">
+                    </section>
+                    <section>
+                        <input type="password" placeholder="密码" id="password" maxlength="20">
+                    </section>
+                    <section>
+                        <input type="text" name="" id="valicode" maxlength="5" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+                        <img src="" id="captcha_img">
+                        <a href="javascript:;" id="reKaptcha">
+                            <img src="../static/img/login/fresh.png" alt="">
+                        </a>
+                    </section>
+                    <p class="errormsg"></p>
+                    <input class="submit" id="btn_login" type="button" value="登录">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../static/lib/jquery.js"></script>
+    <script src="../static/lib/sha256.min.js"></script>
+    <script src="../static/js/contantsUtil.js"></script>
+    <script src="../static/js/zq.js"></script>
+    <script>
+        $(function() {
+
+            $('#reKaptcha').bind('click',changeVerifyCode);
+
+            // 登录事件
+            $('#btn_login').bind('click', login);
+            // 刷新验证码
+            $('#reKaptcha').bind('click', changeVerifyCode);
+            // 为回车键绑定登录事件
+            $(window).keydown(function(event) {
+                if(event.keyCode == 13) {
+                    login();
+                }
+            });
+            changeVerifyCode();
+
+            var top = getTopWinow(); //获取当前页面的顶层窗口对象
+            // console.log(top, window);
+	        if(top != window){
+	            top.location.href = location.href; //跳转到登陆页面
+	        }
+        });
+
+        //点击切换验证码
+		function changeVerifyCode(){
+			$('#captcha_img').attr("src",appId+"/kaptcha?"+Math.floor(Math.random()*100));
+		}
+
+        function login() {
+            var syscode = $('#syscode').val(),
+                account = $('#account').val(),
+                password = $('#password').val(),
+                valicode = $('#valicode').val();
+            // 校验用户名和密码不能为空
+            if(syscode == null || syscode == '') {
+                $('.errormsg').html('机构编号不能为空');
+                return false;
+            }
+            if(account == null || account == '') {
+                $('.errormsg').html('用户名不能为空');
+                return false;
+            }
+            if(password == null || password == '') {
+                $('.errormsg').html('密码不能为空');
+                return false;
+            }
+            if(valicode == null || valicode == '') {
+                $('.errormsg').html('验证码不能为空');
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: appId + '/login',
+                data: {syscode: syscode, account: account, password: sha256(password), captcha: valicode},
+                success: function(resp) {
+                    if(resp && resp.code == 0) {
+                        var uinfo = resp.data;
+                        localStorage.setItem('userInfo', JSON.stringify(uinfo));
+                        $('#btn_login').addClass('disabled');
+                        window.location.href = urlId + '/index.html';
+                    }else {
+                        // zq.error(resp.msg);
+                        // dialogClose();
+                        $('.errormsg').html(resp.msg);
+                        setTimeout(function() {
+                            changeVerifyCode();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+        // 获取最顶层window窗口对象
+        function getTopWinow(){
+            var p = window;
+            while(p != p.parent){
+                p = p.parent;   //循环赋值：直到获得最顶层对象
+            }
+            return p;
+        }
+
+        // 关闭错误提示
+        function dialogClose() {
+            $('.dialogClose, .dialog button').on('click', function() {
+                $('.dialog').fadeOut(500);
+            });       
+        }
+
+    </script>
+</body>
+</html>

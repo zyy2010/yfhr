@@ -1,0 +1,291 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family:'pingfang-sc',Arial, Helvetica, sans-serif,'宋体','黑体';
+    color:#333;
+    -webkit-text-size-adjust:none;
+}
+html, body, h1, h2, h3, h4, h5, h6, form, input, textarea,
+article,aside,dialog,footer,header,section,footer,nav,figure,menu,
+div, span, p, br, table tbody tr td, table thead tr td,
+table tfoot tr td, ul li, ul, li, ol li, ol, dl, dt, dd,
+dl dt, dl dd{
+  margin:0px; padding:0px;
+  -webkit-overflow-scrolling: touch;
+}
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{
+    display:block;
+}
+ul li, ul, li, ol, li {
+    list-style: none;
+}
+a, a:hover {
+    text-decoration: none;
+    color: #333;
+}
+img {
+    border: 0;
+}
+textarea {
+    resize: 0;
+    -webkit-appearance: none;
+}
+em, i {
+    font-style: normal;
+}
+a {
+    cursor: pointer;
+}
+input, button {
+    outline: none;
+}
+input[type='button'], input[type='submit'], input[type='reset'] {
+    -webkit-appearance: none;
+}
+a, img, button, input, textarea, div{
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    *zoom: 1;
+}
+button {
+    cursor: pointer;
+}
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.disabled {
+    pointer-events: none;
+}
+button.disabled, a.btn.disabled {
+    background: #ccc !important;
+    color: #a8a8a8 !important;
+}
+a.disabled {
+    color: #ccc !important;
+}
+.pra {
+    position: relative;
+    float: left;
+    width: 153px;
+}
+.red {
+    color: red;
+}
+
+/* 弹窗 */
+#dialogtab{
+    width: 460px;
+    height: 220px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -90px;
+    background: #fff;
+    box-shadow: 0px 0px 25px 8px #e5e5e6;
+    -webkit-box-shadow: 0px 0px 25px 8px #e5e5e6;
+    -moz-box-shadow: 0px 0px 25px 8px #e5e5e6;
+    z-index: 99
+}
+#dialogtab h4,#receipt h4{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding-left:25px;
+    font-weight: normal;
+}
+#dialogtab h4.approve,#receipt h4{
+    background: #0078e5
+}
+#dialogtab .contxt{
+    padding:15px;
+    height: 90px;
+    color: #545455;
+    display:flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+#dialogtab .contxt img{
+    width: 33px;
+    height: 33px;
+    margin-right: 30px;
+}
+#dialogtab a#conbtn{
+    position: absolute;
+    width: 88px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #0078e5;
+    font-size: 14px;
+    right: 0;
+    bottom: 0;
+}
+#dialogtab #closerpp,#receipt #closer{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    right: 0;
+    top: 0
+}
+
+/* 弹框错误提示 */
+.errorTips {
+    display: inline-block;
+    line-height: 34px;
+    font-size: 12px;
+    color: red;
+    margin-left: -10px;
+    display: none;
+}
+
+/* 错误弹窗 */
+.dialog {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999
+}
+.dialogError>div {
+    width: 400px;
+    position: absolute;
+    background: #fff;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.dialogError .dialogClose {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    right: 0;
+    top: 0;
+}
+.dialogError h4 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding-left: 25px;
+    font-weight: normal;
+    text-align: left;
+}
+.dialogError h4.error {
+    background: #ffab91;
+}
+.dialogError .content {
+    padding: 50px 10px;
+}
+.dialogError button {
+    color: #6a6a6a;
+    border: 1px solid #bfbfbf;
+    background: #fff;
+    margin: 0 30px 20px;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    line-height: 26px;
+}
+.dialogError button.sure {
+    background: #ffab91;
+    color: #fff;
+    border-color: #fff;
+}
+
+/* 成功弹窗 */
+.successdialog{
+    width: 234px;
+    height: 234px;
+    border-radius: 16px;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    margin-left: -117px;
+    margin-top: -117px;
+    background: #fff;
+    box-shadow: 0px 0px 25px 8px #e5e5e6;
+    -webkit-box-shadow: 0px 0px 25px 8px #e5e5e6;
+    -moz-box-shadow: 0px 0px 25px 8px #e5e5e6;
+      display:flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    z-index: 99;
+  }
+  .successdialog img{
+    display: block;
+  }
+
+.input-group {
+    position: relative;
+}
+.input-group > input, .input-group > select {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+.input-group i {
+    display: none !important;
+}
+.input-group small {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+.Wdate {
+    height: 34px !important;
+    border-color: #ccc !important;
+}
+
+/* 给输入框输入成功去掉自带样式 */
+.has-success>label {
+    color: #555 !important;
+    background-color: #eee !important;
+    border-color: #ccc !important;
+}
+.has-success>input, .has-success>select {
+    border-color: #ccc !important;
+}
+
+/* 表格选中颜色 */
+.fixed-table-container tbody .selected td {
+    background: #e0f8ff;
+}
+
+.bTabs .nav-tabs>li>a {
+    display: inline-block !important;
+}

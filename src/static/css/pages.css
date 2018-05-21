@@ -1,0 +1,19 @@
+html,body{
+	height: 100%
+}
+
+.boxpm .pull-left{
+	padding-right: 8px;
+	margin-top: 10px;
+}
+.panel-heading{
+	padding-top: 0;
+}
+.panel{
+	margin-bottom: 0;
+}
+
+.boxpm button{
+	margin-top: 10px;
+	margin-right: 8px;
+}

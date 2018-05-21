@@ -1,0 +1,110 @@
+.login {
+    background: #fff;
+    height: 100%;
+}
+.header {
+    height: 64px;
+}
+header a {
+    margin-left: 40px;
+    margin-top: 9px;
+    display: inline-block;
+}
+.middle {
+    background: url('../img/login/bg.jpg') no-repeat center top;
+    width: 100%;
+    height: -webkit-calc(100% - 64px);
+    height: -moz-calc(100% - 64px);
+    height: calc(100% - 64px);
+    background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -webkit-background-size: 100% auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+.login_info {
+    background-color: #fff;
+    width: 220px;
+    padding: 35px;
+    border-radius: 4px;
+    right: 18%;
+    top: 42%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    position: absolute;
+}
+
+.login_info h3 {
+    font-size: 22px;
+    color: #008cd6;
+    text-align: center;
+    font-weight: normal;
+}
+.login_info section {
+    width: 100%;
+    margin-top: 18px;
+    overflow: auto;
+}
+.login_info section input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 7px 7px 7px 45px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.login_info section:first-of-type input {
+    background: url('../img/login/icon.png') no-repeat 7px 0;
+}
+.login_info section:nth-of-type(2) input {
+    background: url('../img/login/icon.png') no-repeat 7px -34px;
+}
+.login_info section:nth-of-type(3) input {
+    background: url('../img/login/icon.png') no-repeat 7px -68px;
+}
+.login_info section:nth-of-type(4) input {
+    float: left;
+    width: 90px;
+    padding: 7px;
+}
+.login_info section:nth-of-type(4) a {
+    float: right;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+.login_info section > img {
+    float: left;
+    width: 102px;
+    height: 34px;;
+}
+.submit {
+    height: 36px;
+    width: 100%;
+    background: #00a0e9;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 4px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: block;
+    border: none;
+}
+.errormsg {
+    color: red;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    height: 25px;
+}
+.none {
+    display: none;
+}
+.disabled {
+    background: #ddd;
+}
